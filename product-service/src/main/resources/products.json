@@ -1,0 +1,828 @@
+[
+  {
+    "name": "Wireless Earbuds",
+    "imageUrl": "https://images.pexels.com/photos/3780681/pexels-photo-3780681.jpeg",
+    "price": 1499,
+    "description": "Compact wireless earbuds with touch controls and 24-hour battery backup.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Bluetooth Speaker",
+    "imageUrl": "https://images.pexels.com/photos/31683433/pexels-photo-31683433.jpeg",
+    "price": 1799,
+    "description": "Portable Bluetooth speaker with deep bass and 12-hour playtime.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Gaming Mouse",
+    "imageUrl": "https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg",
+    "price": 999,
+    "description": "Ergonomic gaming mouse with adjustable DPI and RGB lighting.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Mechanical Keyboard",
+    "imageUrl": "https://images.pexels.com/photos/841228/pexels-photo-841228.jpeg",
+    "price": 2499,
+    "description": "Mechanical keyboard with blue switches and customizable RGB backlight.",
+    "category": "Electronics"
+  },
+  {
+    "name": "4K Smart TV",
+    "imageUrl": "https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg",
+    "price": 45999,
+    "description": "55-inch 4K Ultra HD Smart TV with HDR support and built-in streaming apps.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Portable SSD",
+    "imageUrl": "https://images.pexels.com/photos/4219860/pexels-photo-4219860.jpeg",
+    "price": 5999,
+    "description": "1TB portable SSD with high-speed data transfer and compact design.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Power Bank 20000mAh",
+    "imageUrl": "https://images.pexels.com/photos/10104281/pexels-photo-10104281.jpeg",
+    "price": 1299,
+    "description": "20000mAh power bank with dual USB output and fast charging support.",
+    "category": "Electronics"
+  },
+  {
+    "name": "USB-C Fast Charger",
+    "imageUrl": "https://images.pexels.com/photos/36012993/pexels-photo-36012993.jpeg",
+    "price": 799,
+    "description": "30W USB-C fast charger compatible with smartphones, tablets, and laptops.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Noise Canceling Headphones",
+    "imageUrl": "https://images.pexels.com/photos/33915459/pexels-photo-33915459.jpeg",
+    "price": 2299,
+    "description": "Over-ear headphones with active noise cancellation and premium sound quality.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Fitness Smartwatch",
+    "imageUrl": "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
+    "price": 3499,
+    "description": "Fitness smartwatch11 with heart rate monitor, sleep tracking, and GPS.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Tablet 10-inch",
+    "imageUrl": "https://images.pexels.com/photos/7563462/pexels-photo-7563462.jpeg",
+    "price": 12999,
+    "description": "10-inch tablet with Full HD display, 6GB RAM, and 128GB storage.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Webcam HD",
+    "imageUrl": "https://images.pexels.com/photos/7172701/pexels-photo-7172701.jpeg",
+    "price": 1499,
+    "description": "HD webcam with built-in microphone ideal for video conferencing.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Gaming Headset",
+    "imageUrl": "https://images.pexels.com/photos/28993059/pexels-photo-28993059.jpeg",
+    "price": 1999,
+    "description": "Gaming headset with surround sound and noise-canceling microphone.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Smart LED Bulb",
+    "imageUrl": "https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg",
+    "price": 599,
+    "description": "WiFi-enabled smart LED bulb with adjustable brightness and color control.",
+    "category": "Electronics"
+  },
+  {
+    "name": "WiFi Router",
+    "imageUrl": "https://images.pexels.com/photos/4218546/pexels-photo-4218546.jpeg",
+    "price": 2499,
+    "description": "Dual-band WiFi router with high-speed connectivity and wide coverage.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Men's Casual T-Shirt",
+    "imageUrl": "https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg",
+    "price": 799,
+    "description": "Comfortable cotton casual t-shirt with modern fit and breathable fabric.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Women's Floral Dress",
+    "imageUrl": "https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg",
+    "price": 1499,
+    "description": "Elegant floral dress made from lightweight fabric, perfect for casual outings.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Slim Fit Jeans",
+    "imageUrl": "https://images.pexels.com/photos/17428562/pexels-photo-17428562.jpeg",
+    "price": 1999,
+    "description": "Stretchable slim fit jeans with a stylish modern cut.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Running Shoes",
+    "imageUrl": "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg",
+    "price": 2499,
+    "description": "Lightweight running shoes with cushioned sole and breathable mesh upper.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Leather Wallet",
+    "imageUrl": "https://images.pexels.com/photos/12495664/pexels-photo-12495664.jpeg",
+    "price": 999,
+    "description": "Premium leather wallet with multiple card slots and durable stitching.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Sports Jacket",
+    "imageUrl": "https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg",
+    "price": 2999,
+    "description": "Water-resistant sports jacket with zip closure and adjustable hood.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Cotton Kurti",
+    "imageUrl": "https://images.pexels.com/photos/28512787/pexels-photo-28512787.jpeg",
+    "price": 1199,
+    "description": "Comfortable cotton kurti with traditional prints and relaxed fit.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Formal Shirt",
+    "imageUrl": "https://images.pexels.com/photos/10131161/pexels-photo-10131161.jpeg",
+    "price": 1599,
+    "description": "Classic formal shirt with wrinkle-resistant fabric and tailored fit.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Analog Watch",
+    "imageUrl": "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg",
+    "price": 3499,
+    "description": "Stylish analog watch with stainless steel strap and quartz movement.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Sunglasses UV400",
+    "imageUrl": "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg",
+    "price": 899,
+    "description": "UV400 protected sunglasses with polarized lenses and modern frame design.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Hoodie Sweatshirt",
+    "imageUrl": "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+    "price": 1799,
+    "description": "Warm hoodie sweatshirt with soft inner lining and adjustable drawstring hood.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Ethnic Saree",
+    "imageUrl": "https://images.pexels.com/photos/31540070/pexels-photo-31540070.jpeg",
+    "price": 3999,
+    "description": "Traditional ethnic saree with elegant embroidery and premium fabric.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Casual Sneakers",
+    "imageUrl": "https://images.pexels.com/photos/2529147/pexels-photo-2529147.jpeg",
+    "price": 2199,
+    "description": "Comfortable casual sneakers with durable sole and stylish design.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Handbag",
+    "imageUrl": "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg",
+    "price": 1899,
+    "description": "Spacious handbag with premium finish and multiple compartments.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Ergonomic Office Chair",
+    "imageUrl": "https://images.pexels.com/photos/1957478/pexels-photo-1957478.jpeg",
+    "price": 8999,
+    "description": "Adjustable ergonomic office chair with lumbar support and breathable mesh back.",
+    "category": "Home"
+  },
+  {
+    "name": "Memory Foam Pillow",
+    "imageUrl": "https://images.pexels.com/photos/449528/pexels-photo-449528.jpeg",
+    "price": 1299,
+    "description": "Soft memory foam pillow designed for optimal neck and spine support.",
+    "category": "Home"
+  },
+  {
+    "name": "LED Table Lamp",
+    "imageUrl": "https://images.pexels.com/photos/112811/pexels-photo-112811.jpeg",
+    "price": 999,
+    "description": "Energy-efficient LED table lamp with adjustable brightness settings.",
+    "category": "Home"
+  },
+  {
+    "name": "Wall Clock Modern",
+    "imageUrl": "https://images.pexels.com/photos/191414/pexels-photo-191414.jpeg",
+    "price": 1499,
+    "description": "Modern wall clock with minimalist design and silent sweep movement.",
+    "category": "Home"
+  },
+  {
+    "name": "Bedsheet King Size",
+    "imageUrl": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
+    "price": 1999,
+    "description": "King size bedsheet made from soft, breathable cotton fabric.",
+    "category": "Home"
+  },
+  {
+    "name": "Cookware Set",
+    "imageUrl": "https://images.pexels.com/photos/31110049/pexels-photo-31110049.jpeg",
+    "price": 4999,
+    "description": "Durable cookware set with multiple pots and pans for everyday cooking.",
+    "category": "Home"
+  },
+  {
+    "name": "Non-Stick Frying Pan",
+    "imageUrl": "https://images.pexels.com/photos/4072990/pexels-photo-4072990.png",
+    "price": 1199,
+    "description": "Premium non-stick frying pan with heat-resistant handle.",
+    "category": "Home"
+  },
+  {
+    "name": "Electric Kettle",
+    "imageUrl": "https://images.pexels.com/photos/8879615/pexels-photo-8879615.jpeg",
+    "price": 1599,
+    "description": "1.5L electric kettle with auto shut-off and fast boiling feature.",
+    "category": "Home"
+  },
+  {
+    "name": "Vacuum Cleaner",
+    "imageUrl": "https://images.pexels.com/photos/6195949/pexels-photo-6195949.jpeg",
+    "price": 6999,
+    "description": "Powerful vacuum cleaner with multi-surface cleaning and HEPA filter.",
+    "category": "Home"
+  },
+  {
+    "name": "Room Heater",
+    "imageUrl": "https://images.pexels.com/photos/30623407/pexels-photo-30623407.jpeg",
+    "price": 2499,
+    "description": "Compact room heater with adjustable temperature and safety cut-off.",
+    "category": "Home"
+  },
+  {
+    "name": "Air Purifier",
+    "imageUrl": "https://images.pexels.com/photos/10036647/pexels-photo-10036647.jpeg",
+    "price": 8999,
+    "description": "Air purifier with HEPA filtration system for cleaner indoor air.",
+    "category": "Home"
+  },
+  {
+    "name": "Yoga Mat",
+    "imageUrl": "https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg",
+    "price": 319,
+    "description": "Non-slip yoga mat ideal for stretching, yoga and floor exercises.",
+    "category": "Sports"
+  },
+  {
+    "name": "Dumbbell Set",
+    "imageUrl": "https://images.pexels.com/photos/260352/pexels-photo-260352.jpeg",
+    "price": 699,
+    "description": "Adjustable dumbbell set for strength training and muscle development.",
+    "category": "Sports"
+  },
+  {
+    "name": "Cricket Bat",
+    "imageUrl": "https://images.pexels.com/photos/35825598/pexels-photo-35825598.jpeg",
+    "price": 1729,
+    "description": "Classic cricket bat suitable for outdoor practice and matches.",
+    "category": "Sports"
+  },
+  {
+    "name": "Football",
+    "imageUrl": "https://images.pexels.com/photos/209841/pexels-photo-209841.jpeg",
+    "price": 599,
+    "description": "Durable football for training and recreational play.",
+    "category": "Sports"
+  },
+  {
+    "name": "Badminton Racket",
+    "imageUrl": "https://images.pexels.com/photos/6307230/pexels-photo-6307230.jpeg",
+    "price": 279,
+    "description": "Set of 5 lightweight badminton rackets with plastic shuttlecocks.",
+    "category": "Sports"
+  },
+  {
+    "name": "Tennis Ball Pack",
+    "imageUrl": "https://images.pexels.com/photos/30864599/pexels-photo-30864599.jpeg",
+    "price": 250,
+    "description": "Set of three tennis balls suitable for practice sessions.",
+    "category": "Sports"
+  },
+  {
+    "name": "Cycling Helmet",
+    "imageUrl": "https://images.pexels.com/photos/19351990/pexels-photo-19351990.jpeg",
+    "price": 689,
+    "description": "Adjustable cycling helmet with ventilation for safety during riding.",
+    "category": "Sports"
+  },
+  {
+    "name": "Skipping Rope",
+    "imageUrl": "https://images.pexels.com/photos/6339693/pexels-photo-6339693.jpeg",
+    "price": 97,
+    "description": "Lightweight skipping rope for cardio workouts and coordination training.",
+    "category": "Sports"
+  },
+  {
+    "name": "Gym Gloves",
+    "imageUrl": "https://images.pexels.com/photos/669585/pexels-photo-669585.jpeg",
+    "price": 680,
+    "description": "Comfortable gym gloves designed for weight training and grip support.",
+    "category": "Sports"
+  },
+  {
+    "name": "Face Moisturizer",
+    "imageUrl": "https://images.pexels.com/photos/27393235/pexels-photo-27393235.jpeg",
+    "price": 499,
+    "description": "Hydrating face moisturizer suitable for all skin types with long-lasting nourishment.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Vitamin C Serum",
+    "imageUrl": "https://images.pexels.com/photos/32282462/pexels-photo-32282462.jpeg",
+    "price": 699,
+    "description": "Brightening vitamin C serum that helps reduce dark spots and improve skin glow.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Hair Dryer",
+    "imageUrl": "https://images.pexels.com/photos/973406/pexels-photo-973406.jpeg",
+    "price": 1499,
+    "description": "Compact hair dryer with multiple heat settings and quick-dry technology.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Beard Trimmer",
+    "imageUrl": "https://images.pexels.com/photos/7697712/pexels-photo-7697712.jpeg",
+    "price": 1299,
+    "description": "Rechargeable beard trimmer with precision blades and adjustable length settings.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Makeup Kit",
+    "imageUrl": "https://images.pexels.com/photos/3373739/pexels-photo-3373739.jpeg",
+    "price": 1999,
+    "description": "Complete makeup kit including foundation, eyeshadow palette, lipstick, and brushes.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Sunscreen SPF50",
+    "imageUrl": "https://images.pexels.com/photos/16443631/pexels-photo-16443631.jpeg",
+    "price": 599,
+    "description": "Broad-spectrum SPF50 sunscreen that protects against UVA and UVB rays.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Shampoo 500ml",
+    "imageUrl": "https://images.pexels.com/photos/13186048/pexels-photo-13186048.jpeg",
+    "price": 399,
+    "description": "Nourishing shampoo 500ml bottle suitable for daily hair care.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Body Lotion",
+    "imageUrl": "https://images.pexels.com/photos/18996281/pexels-photo-18996281.jpeg",
+    "price": 349,
+    "description": "Moisturizing body lotion that keeps skin soft and hydrated all day.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Perfume 100ml",
+    "imageUrl": "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg",
+    "price": 1499,
+    "description": "Long-lasting perfume 100ml with a refreshing and elegant fragrance.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Self-Help Guide",
+    "imageUrl": "https://images.pexels.com/photos/3118214/pexels-photo-3118214.jpeg",
+    "price": 399,
+    "description": "Practical self-help guide focused on personal growth, productivity, and mindset improvement.",
+    "category": "Books"
+  },
+  {
+    "name": "Mystery Novel",
+    "imageUrl": "https://images.pexels.com/photos/20837035/pexels-photo-20837035.jpeg",
+    "price": 499,
+    "description": "Engaging mystery novel filled with suspense, unexpected twists, and gripping storytelling.",
+    "category": "Books"
+  },
+  {
+    "name": "Science Fiction Book",
+    "imageUrl": "https://images.pexels.com/photos/4107157/pexels-photo-4107157.jpeg",
+    "price": 599,
+    "description": "Imaginative science fiction book exploring futuristic technology and space adventures.",
+    "category": "Books"
+  },
+  {
+    "name": "Business Strategy Book",
+    "imageUrl": "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg",
+    "price": 699,
+    "description": "Comprehensive guide on modern business strategies, leadership, and market analysis.",
+    "category": "Books"
+  },
+  {
+    "name": "Programming in Python",
+    "imageUrl": "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
+    "price": 799,
+    "description": "Beginner to advanced guide for learning Python programming with practical examples.",
+    "category": "Books"
+  },
+  {
+    "name": "Jane Eyre book",
+    "imageUrl": "https://images.pexels.com/photos/20245912/pexels-photo-20245912.jpeg",
+    "price": 899,
+    "description": " Mystery novel filled with suspense",
+    "category": "Books"
+  },
+  {
+    "name": "History of Russia",
+    "imageUrl": "https://images.pexels.com/photos/246486/pexels-photo-246486.jpeg",
+    "price": 599,
+    "description": "Comprehensive overview of Russia's rich history from ancient to modern times.",
+    "category": "Books"
+  },
+  {
+    "name": "Motivational Quotes Collection",
+    "imageUrl": "https://images.pexels.com/photos/1424874/pexels-photo-1424874.jpeg",
+    "price": 299,
+    "description": "Inspirational collection of motivational quotes to boost positivity and confidence.",
+    "category": "Books"
+  },
+  {
+    "name": "Organic Honey 500g",
+    "imageUrl": "https://images.pexels.com/photos/5634210/pexels-photo-5634210.jpeg",
+    "price": 349,
+    "description": "Pure organic honey 500g jar, rich in natural nutrients and free from additives.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Basmati Rice 5kg",
+    "imageUrl": "https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg",
+    "price": 799,
+    "description": "Premium long-grain basmati rice 5kg pack with rich aroma and fluffy texture.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Almonds 1kg",
+    "imageUrl": "https://images.pexels.com/photos/1013420/pexels-photo-1013420.jpeg",
+    "price": 1199,
+    "description": "Crunchy and nutritious almonds 1kg pack, perfect for snacking and cooking.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Green Tea Pack",
+    "imageUrl": "https://images.pexels.com/photos/29872764/pexels-photo-29872764.jpeg",
+    "price": 299,
+    "description": "Refreshing green tea pack rich in antioxidants for a healthy lifestyle.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Olive Oil 1L",
+    "imageUrl": "https://images.pexels.com/photos/8504692/pexels-photo-8504692.jpeg",
+    "price": 899,
+    "description": "Extra virgin olive oil 1L bottle ideal for cooking and salad dressings.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Peanut Butter 1kg",
+    "imageUrl": "https://images.pexels.com/photos/5149346/pexels-photo-5149346.jpeg",
+    "price": 549,
+    "description": "Creamy peanut butter 1kg jar packed with protein and rich flavor.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Protein Powder 1kg",
+    "imageUrl": "https://images.pexels.com/photos/31555272/pexels-photo-31555272.jpeg",
+    "price": 1499,
+    "description": "High-quality protein powder 1kg pack for muscle recovery and strength support.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Instant Coffee 3x10g",
+    "imageUrl": "https://images.pexels.com/photos/19673584/pexels-photo-19673584.jpeg",
+    "price": 300,
+    "description": "Rich and aromatic instant coffee powder for a quick energy boost.",
+    "category": "Groceries"
+  },
+  {
+    "name": "Remote Control Car",
+    "imageUrl": "https://images.pexels.com/photos/9227215/pexels-photo-9227215.jpeg",
+    "price": 1499,
+    "description": "High-speed remote control car with rechargeable battery and durable build.",
+    "category": "Toys"
+  },
+  {
+    "name": "Building Blocks Set",
+    "imageUrl": "https://images.pexels.com/photos/4491711/pexels-photo-4491711.jpeg",
+    "price": 999,
+    "description": "Colorful building blocks set designed to enhance creativity and motor skills.",
+    "category": "Toys"
+  },
+  {
+    "name": "Puzzle Game 500 Pieces",
+    "imageUrl": "https://images.pexels.com/photos/8386118/pexels-photo-8386118.jpeg",
+    "price": 799,
+    "description": "500-piece puzzle game that improves focus and problem-solving skills.",
+    "category": "Toys"
+  },
+  {
+    "name": "Soft Teddy Bear",
+    "imageUrl": "https://images.pexels.com/photos/36079140/pexels-photo-36079140.jpeg",
+    "price": 699,
+    "description": "Cute and cuddly soft teddy bear made from premium plush fabric.",
+    "category": "Toys"
+  },
+  {
+    "name": "Educational Toy Kit",
+    "imageUrl": "https://images.pexels.com/photos/4491759/pexels-photo-4491759.jpeg",
+    "price": 1299,
+    "description": "Interactive educational toy kit that promotes learning and creativity in kids.",
+    "category": "Toys"
+  },
+  {
+    "name": "Action Figure",
+    "imageUrl": "https://images.pexels.com/photos/20029622/pexels-photo-20029622.jpeg",
+    "price": 599,
+    "description": "Detailed action figure toy with movable joints for imaginative play.",
+    "category": "Toys"
+  },
+  {
+    "name": "Wireless fast Charging Pad",
+    "imageUrl": "https://images.pexels.com/photos/7742585/pexels-photo-7742585.jpeg",
+    "price": 1299,
+    "description": "Fast wireless charging pad compatible with Qi-enabled devices.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Smartphone Gimbal",
+    "imageUrl": "https://images.pexels.com/photos/5123285/pexels-photo-5123285.jpeg",
+    "price": 4999,
+    "description": "3-axis smartphone gimbal stabilizer for smooth video recording.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Noise-Isolating Earphones",
+    "imageUrl": "https://images.pexels.com/photos/373945/pexels-photo-373945.jpeg",
+    "price": 899,
+    "description": "In-ear earphones with noise-isolating design and crystal-clear sound.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Smart Fitness Band",
+    "imageUrl": "https://images.pexels.com/photos/19961771/pexels-photo-19961771.jpeg",
+    "price": 2199,
+    "description": "Waterproof fitness band with heart rate and sleep tracking.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Portable Projector",
+    "imageUrl": "https://images.pexels.com/photos/31726719/pexels-photo-31726719.jpeg",
+    "price": 10999,
+    "description": "Compact portable projector for home theater with HD display.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Men's Polo T-Shirt",
+    "imageUrl": "https://images.pexels.com/photos/31438911/pexels-photo-31438911.jpeg",
+    "price": 1199,
+    "description": "Classic cotton polo T-shirt with a slim fit and soft fabric.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Women's Maxi Skirt",
+    "imageUrl": "https://images.pexels.com/photos/1007018/pexels-photo-1007018.jpeg",
+    "price": 1599,
+    "description": "Flowy maxi skirt made from lightweight breathable fabric.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Men's Leather Belt",
+    "imageUrl": "https://images.pexels.com/photos/35322153/pexels-photo-35322153.jpeg",
+    "price": 799,
+    "description": "Premium leather belt with durable buckle for formal and casual wear.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Women's Ankle Boots",
+    "imageUrl": "https://images.pexels.com/photos/27174561/pexels-photo-27174561.jpeg",
+    "price": 2499,
+    "description": "Stylish ankle boots with cushioned insole and sleek design.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Men's Running Shorts",
+    "imageUrl": "https://images.pexels.com/photos/8084766/pexels-photo-8084766.jpeg",
+    "price": 899,
+    "description": "Lightweight breathable running shorts for exercise and casual wear.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Women's Yoga Leggings",
+    "imageUrl": "https://images.pexels.com/photos/7880081/pexels-photo-7880081.jpeg",
+    "price": 1299,
+    "description": "Stretchable yoga leggings with high waist for comfort and style.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Decorative Floor Lamp",
+    "imageUrl": "https://images.pexels.com/photos/17075439/pexels-photo-17075439.jpeg",
+    "price": 3499,
+    "description": "Modern decorative floor lamp with dimmable LED light.",
+    "category": "Home"
+  },
+  {
+    "name": "Adjustable Wall Shelf",
+    "imageUrl": "https://images.pexels.com/photos/34117279/pexels-photo-34117279.jpeg",
+    "price": 2199,
+    "description": "Durable adjustable wall shelf ideal for storage and decoration.",
+    "category": "Home"
+  },
+  {
+    "name": "Ceramic Vase Set",
+    "imageUrl": "https://images.pexels.com/photos/18633243/pexels-photo-18633243.jpeg",
+    "price": 1299,
+    "description": "Set of 3 ceramic vases with elegant design for home decor.",
+    "category": "Home"
+  },
+  {
+    "name": "Kitchen Knife Set",
+    "imageUrl": "https://images.pexels.com/photos/16443132/pexels-photo-16443132.jpeg",
+    "price": 1999,
+    "description": "Stainless steel kitchen knife set with ergonomic handles.",
+    "category": "Home"
+  },
+  {
+    "name": "Bedside Night Lamp",
+    "imageUrl": "https://images.pexels.com/photos/1612726/pexels-photo-1612726.jpeg",
+    "price": 899,
+    "description": "Compact night lamp with adjustable brightness and touch control.",
+    "category": "Home"
+  },
+  {
+    "name": "Indoor Plant Pot",
+    "imageUrl": "https://images.pexels.com/photos/15945068/pexels-photo-15945068.jpeg",
+    "price": 599,
+    "description": "Decorative indoor plant pot made of ceramic with modern design.",
+    "category": "Home"
+  },
+  {
+    "name": "Adjustable Weight Bench",
+    "imageUrl": "https://images.pexels.com/photos/7289236/pexels-photo-7289236.jpeg",
+    "price": 3999,
+    "description": "Multi-angle adjustable bench for strength training and weight lifting.",
+    "category": "Sports"
+  },
+  {
+    "name": "Resistance Loop Bands",
+    "imageUrl": "https://images.pexels.com/photos/7479769/pexels-photo-7479769.jpeg",
+    "price": 399,
+    "description": "Set of 5 resistance loop bands for stretching and toning exercises.",
+    "category": "Sports"
+  },
+  {
+    "name": "Football Goal Net",
+    "imageUrl": "https://images.pexels.com/photos/6495100/pexels-photo-6495100.jpeg",
+    "price": 1599,
+    "description": "Portable football goal net perfect for backyard or park use.",
+    "category": "Sports"
+  },
+  {
+    "name": "Basketball Hoop Stand",
+    "imageUrl": "https://images.pexels.com/photos/2372005/pexels-photo-2372005.jpeg",
+    "price": 4999,
+    "description": "Adjustable basketball hoop stand for indoor and outdoor practice.",
+    "category": "Sports"
+  },
+  {
+    "name": "Hair Straightener",
+    "imageUrl": "https://images.pexels.com/photos/8467976/pexels-photo-8467976.jpeg",
+    "price": 1999,
+    "description": "Ceramic hair straightener with adjustable temperature settings.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Facial Cleansing Brush",
+    "imageUrl": "https://images.pexels.com/photos/6621326/pexels-photo-6621326.jpeg",
+    "price": 799,
+    "description": "Electric facial cleansing brush for deep cleaning and exfoliation.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Body Scrub",
+    "imageUrl": "https://images.pexels.com/photos/7262860/pexels-photo-7262860.jpeg",
+    "price": 699,
+    "description": "Natural exfoliating body scrub for smooth and glowing skin.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Lipstick Set",
+    "imageUrl": "https://images.pexels.com/photos/7810602/pexels-photo-7810602.jpeg",
+    "price": 999,
+    "description": "Set of 5 vibrant lipsticks with long-lasting color.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Vitamin-C Cream",
+    "imageUrl": "https://images.pexels.com/photos/31015384/pexels-photo-31015384.jpeg",
+    "price": 1499,
+    "description": "Hydrating Vitamin-C cream for wrinkle reduction and skin elasticity.",
+    "category": "Beauty"
+  },
+  {
+    "name": "Wireless Charging Pad",
+    "imageUrl": "https://images.pexels.com/photos/7952558/pexels-photo-7952558.jpeg",
+    "price": 999,
+    "description": "Fast wireless charger for smartphones.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Notebook Set",
+    "imageUrl": "https://images.pexels.com/photos/159865/notepad-pencil-green-black-159865.jpeg",
+    "price": 299,
+    "description": "Pack of 3 ruled notebooks.",
+    "category": "Books"
+  },
+  {
+    "name": "Wireless Noise-Canceling Headphones",
+    "imageUrl": "https://images.pexels.com/photos/14935011/pexels-photo-14935011.jpeg",
+    "price": 1999,
+    "description": "Over-ear wireless headphones with active noise cancellation and 30-hour battery life.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Android Smartphone (6.5-inch)",
+    "imageUrl": "https://images.pexels.com/photos/11216260/pexels-photo-11216260.jpeg",
+    "price": 14999,
+    "description": "6.5-inch display, 5000mAh battery, 128GB storage, dual camera.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Water-Resistant Laptop Backpack",
+    "imageUrl": "https://images.pexels.com/photos/6107428/pexels-photo-6107428.jpeg",
+    "price": 1499,
+    "description": "Lightweight backpack with padded laptop compartment and multiple pockets.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Men's Casual Sneakers",
+    "imageUrl": "https://images.pexels.com/photos/31507738/pexels-photo-31507738.jpeg",
+    "price": 2199,
+    "description": "Comfortable everyday sneakers with breathable fabric and rubber sole.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Fitness Smartwatch",
+    "imageUrl": "https://images.pexels.com/photos/30385640/pexels-photo-30385640.jpeg",
+    "price": 3499,
+    "description": "Heart-rate monitor, step tracking, sleep analysis, water resistant.",
+    "category": "Electronics"
+  },
+  {
+    "name": "Travel Trolley Bag",
+    "imageUrl": "https://images.pexels.com/photos/13040727/pexels-photo-13040727.jpeg",
+    "price": 4999,
+    "description": "Durable trolley suitcase with spinner wheels.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Air Fryer",
+    "imageUrl": "https://images.pexels.com/photos/29461935/pexels-photo-29461935.jpeg",
+    "price": 6999,
+    "description": "Oil-free cooking air fryer with digital controls.",
+    "category": "Home"
+  },
+  {
+    "name": "Water Bottle (1L)",
+    "imageUrl": "https://images.pexels.com/photos/113734/pexels-photo-113734.jpeg",
+    "price": 299,
+    "description": "BPA-free reusable water bottle.",
+    "category": "Sports"
+  },
+  {
+    "name": "Women's Sandals",
+    "imageUrl": "https://images.pexels.com/photos/267320/pexels-photo-267320.jpeg",
+    "price": 1599,
+    "description": "Comfortable flat sandals for daily use.",
+    "category": "Fashion"
+  },
+  {
+    "name": "Table Fan",
+    "imageUrl": "https://images.pexels.com/photos/5850342/pexels-photo-5850342.jpeg",
+    "price": 1899,
+    "description": "High-speed table fan with oscillation.",
+    "category": "Home"
+  }
+]
