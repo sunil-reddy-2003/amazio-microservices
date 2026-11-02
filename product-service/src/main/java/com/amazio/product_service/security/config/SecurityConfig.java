@@ -40,18 +40,15 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // Public product listing
-                        .requestMatchers(
-                                HttpMethod.GET,
-                                "/api/products/getAllProducts",
-                                "/api/products/viewallproducts"
-                        ).permitAll()
+                        .requestMatchers("/api/v1/products/")
+                        .permitAll()
 
                         // Product details: CUSTOMER or ADMIN
-                        .requestMatchers("/api/products/{productId}")
+                        .requestMatchers("/api/v1/products/{productId}")
                         .hasAnyRole("CUSTOMER", "ADMIN")
 
                         // Admin-only operations
-                        .requestMatchers("/api/admin/products/**")
+                        .requestMatchers("/api/v1/admin/products/**")
                         .hasRole("ADMIN")
 
                         .anyRequest().authenticated()
