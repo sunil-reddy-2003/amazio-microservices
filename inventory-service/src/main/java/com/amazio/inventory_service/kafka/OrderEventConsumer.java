@@ -16,7 +16,7 @@ public class OrderEventConsumer {
 
     @KafkaListener(
             topics = "order-events",
-            groupId = "order-event-consumer-group",
+            groupId = "order-event-group",
             properties = {
                     "spring.json.value.default.type=com.amazio.inventory_service.dto.OrderCreatedEvent"
             }

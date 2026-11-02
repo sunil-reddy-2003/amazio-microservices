@@ -36,8 +36,9 @@ public class SecurityConfig {
                         )
                 )
                 .authorizeHttpRequests(auth -> auth
-
-                        .requestMatchers("/api/inventory/**")
+                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
+                        .permitAll()
+                        .requestMatchers("/api/v1/inventory/**")
                         .hasAnyRole( "ADMIN")
                         .anyRequest()
                         .authenticated()

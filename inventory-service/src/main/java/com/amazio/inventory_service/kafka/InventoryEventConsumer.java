@@ -18,7 +18,7 @@ public class InventoryEventConsumer {
 
     @KafkaListener(
             topics = "product-events",
-            groupId = "product-event-consumer-group",
+            groupId = "product-event-group",
             properties = {
                     "spring.json.value.default.type=com.amazio.inventory_service.dto.ProductCreatedEvent"
             }
