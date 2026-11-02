@@ -36,12 +36,10 @@ public class SecurityConfig {
                         )
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                org.springframework.http.HttpMethod.OPTIONS, "/**"
-                        ).permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
+                        .permitAll()
 
-                        .requestMatchers("/api/order/**").hasRole("CUSTOMER")
-
+                        .requestMatchers("/api/v1/orders/**").hasRole("CUSTOMER")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(

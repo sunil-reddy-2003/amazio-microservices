@@ -43,6 +43,7 @@ public class OrderService {
             String paymentMethod,
             UUID userId,
             String authHeader) {
+
         if (userId == null) {
             throw new IllegalArgumentException("User ID is required");
         }
@@ -77,13 +78,12 @@ public class OrderService {
                         "Quantity must be greater than zero"
                 );
             }
-
-            ProductResponseDto product = productRestClient.get()
+            ApiResponse response = productRestClient.get()
                     .uri("/api/v1/products/{productId}", itemDto.productId())
                     .header("Authorization",authHeader)
                     .retrieve()
-                    .body(ProductResponseDto.class);
-
+                    .body(ApiResponse.class);
+            ProductResponseDto product=response.data();
             if (product == null) {
                 throw new ProductNotFoundException(
                         "Product not found: " + itemDto.productId()
@@ -103,7 +103,6 @@ public class OrderService {
 
             items.add(orderItem);
         }
-
         LocalDateTime now = LocalDateTime.now();
 
         Payment payment = new Payment();
@@ -150,7 +149,6 @@ public class OrderService {
         );
 
         orderEventProducer.publishOrderCreated(event);
-
         return savedOrder;
     }
 
@@ -216,11 +214,12 @@ public class OrderService {
 
         for (OrderItem item : order.getOrderItems()) {
 
-            ProductResponseDto product = productRestClient.get()
+            ApiResponse response = productRestClient.get()
                     .uri("/api/v1/products/{productId}", item.getProductId())
                     .header("Authorization",authHeader)
                     .retrieve()
-                    .body(ProductResponseDto.class);
+                    .body(ApiResponse.class);
+            ProductResponseDto product=response.data();
 
             if (product == null) {
                 throw new ProductNotFoundException(

@@ -77,7 +77,7 @@ public class OrdersAPI {
 
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("userid/{userId}")
     public ResponseEntity<Map<String,Object>> getOrdersWithUserId(
             @PathVariable UUID userId,@RequestHeader("Authorization") String authHeader) {
 
@@ -107,7 +107,7 @@ public class OrdersAPI {
         }
     }
 
-    @GetMapping("/{orderId}")
+    @GetMapping("orderid/{orderId}")
     public ResponseEntity<Map<String ,Object>> getOrderByOrderId(
             @PathVariable UUID orderId,
             @RequestHeader("Authorization") String authHeader){
