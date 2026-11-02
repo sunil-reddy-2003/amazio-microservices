@@ -9,5 +9,8 @@ public record LoginResponseDto(
         long expiresIn,
         UUID userId,
         String email,
+        String fName,
+        String lName,
+        long mobile,
         String role
 ) {}

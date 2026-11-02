@@ -104,22 +104,22 @@ public class UserService {
                                 "User not found: " + userId
                         )
                 );
-
-        if (!user.getEmail().equalsIgnoreCase(userDetails.getEmail())
-                && userRepo.existsByEmail(userDetails.getEmail())) {
-
-            throw new UserAlreadyExistsException(
-                    "Email is already registered"
-            );
-        }
-
-        if (user.getMobile() != userDetails.getMobile()
-                && userRepo.existsByMobile(userDetails.getMobile())) {
-
-            throw new UserAlreadyExistsException(
-                    "Mobile number is already registered"
-            );
-        }
+//
+//        if (!user.getEmail().equalsIgnoreCase(userDetails.getEmail())
+//                && userRepo.existsByEmail(userDetails.getEmail())) {
+//
+//            throw new UserAlreadyExistsException(
+//                    "Email is already registered"
+//            );
+//        }
+//
+//        if (user.getMobile() != userDetails.getMobile()
+//                && userRepo.existsByMobile(userDetails.getMobile())) {
+//
+//            throw new UserAlreadyExistsException(
+//                    "Mobile number is already registered"
+//            );
+//        }
 
         user.setFName(userDetails.getFName());
         user.setLName(userDetails.getLName());

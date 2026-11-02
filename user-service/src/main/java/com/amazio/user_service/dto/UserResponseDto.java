@@ -6,8 +6,8 @@ import java.util.UUID;
 public record UserResponseDto (
      UUID userId,
      String email,
-     String fname,
-     String lname,
+     String fName,
+     String lName,
      long mobile
 )
 {}

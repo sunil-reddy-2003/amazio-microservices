@@ -90,6 +90,9 @@ public class AuthenticationService {
                 jwtService.getExpirationTime(),
                 user.getUserId(),
                 user.getEmail(),
+                user.getFName(),
+                user.getLName(),
+                user.getMobile(),
                 user.getUserRole().name()
         );
     }

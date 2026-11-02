@@ -43,14 +43,12 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/api/user/signup",
-                                "/api/user/login",
-                                "/api/user/adminlogin"
+                                "/api/v1/auth/**"
                         ).permitAll()
-
-                        .requestMatchers("/api/user/**")
+                        .requestMatchers("/api/v1/addresses/**")
+                        .hasRole("CUSTOMER")
+                        .requestMatchers("/api/v1/users/**")
                         .hasAnyRole("CUSTOMER", "ADMIN")
-
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(

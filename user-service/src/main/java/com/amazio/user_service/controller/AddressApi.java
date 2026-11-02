@@ -63,7 +63,8 @@ public class AddressApi {
                     .body(
                             Map.of(
                                     "success", true,
-                                    "data", addresses
+                                    "data", addresses,
+                                    "message","Address retrieved successfully"
                             )
                     );
         }catch (UserNotFoundException | AddressNotFoundException e){
