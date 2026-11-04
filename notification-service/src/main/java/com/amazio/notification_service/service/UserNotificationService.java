@@ -5,6 +5,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,15 @@ public class UserNotificationService {
     private final JavaMailSender javaMailSender;
     private final TemplateEngine templateEngine;
 
+    @Value("${password-reset-url}")
+    private String passwordResetUrl;
+
+    @Value("${change-password-url}")
+    private String changePasswordUrl;
+
+    @Value("${home-url}")
+    private String homeUrl;
+
     public void handleUserLogin(UserEvent event) throws MessagingException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -32,7 +42,7 @@ public class UserNotificationService {
         context.setVariable("lName",event.lName());
         context.setVariable("email",event.email());
         context.setVariable("timestamp",event.timestamp());
-        context.setVariable("changePasswordUrl","http://localhost:5173/forgot-password");
+        context.setVariable("changePasswordUrl",changePasswordUrl);
 
         String htmlContent = templateEngine.process("login-success", context);
 
@@ -59,8 +69,8 @@ public class UserNotificationService {
         context.setVariable("fName", event.fName());
         context.setVariable("lName",event.lName());
         context.setVariable("email",event.email());
-        context.setVariable("resetPasswordUrl","http://localhost:5173/reset-password?token="+event.message());
-
+        context.setVariable("resetPasswordUrl", passwordResetUrl + event.message()
+        );
         String htmlContent = templateEngine.process("password-reset", context);
 
         try {
@@ -84,6 +94,8 @@ public class UserNotificationService {
         context.setVariable("lName",event.lName());
         context.setVariable("email",event.email());
         context.setVariable("userId",event.userId());
+        context.setVariable("homeUrl",homeUrl);
+
 
         String htmlContent = templateEngine.process("signup", context);
 
@@ -108,6 +120,8 @@ public class UserNotificationService {
         context.setVariable("lName",event.lName());
         context.setVariable("email",event.email());
         context.setVariable("userId",event.userId());
+        context.setVariable("changePasswordUrl",changePasswordUrl);
+
 
         String htmlContent = templateEngine.process("user-update", context);
 
@@ -132,6 +146,8 @@ public class UserNotificationService {
         context.setVariable("lName",event.lName());
         context.setVariable("email",event.email());
         context.setVariable("userId",event.userId());
+        context.setVariable("changePasswordUrl",changePasswordUrl);
+
 
         String htmlContent = templateEngine.process("login-failed", context);
 

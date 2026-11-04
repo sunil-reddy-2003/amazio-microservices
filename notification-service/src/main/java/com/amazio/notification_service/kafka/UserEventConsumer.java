@@ -29,11 +29,6 @@ public class UserEventConsumer {
         log.info("Received user event: {}", event.eventType());
 
         switch (event.eventType()) {
-//            USER_SIGNUP,
-//                    USER_UPDATED,
-//                    USER_LOGIN,
-//                    USER_LOGIN_FAILED,
-//                    USER_PASSWORD_RESET
 
             case "USER_SIGNUP" ->
                     userNotificationService.handleUserRegistration(event);

@@ -36,3 +36,7 @@ jwt:
       time: ${JWT_ACCESS_EXPIRATION}
     secret:
       password: ${JWT_ACCESS_SECRET}
+
+change-password-url: ${CHANGE_PASSWORD_URL}
+password-reset-url: ${PASSWORD_RESET_URL}
+home-url: ${HOME_URL}
