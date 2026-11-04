@@ -55,6 +55,13 @@ public class ProductsAPI {
                             Map.of("success",false,
                                     "message",e.getMessage()
                             ));
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(
+                            Map.of(
+                                    "success",false,
+                                    "message",e.getMessage()));
         }
     }
 

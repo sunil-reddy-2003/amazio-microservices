@@ -100,4 +100,33 @@ public class ProductsAdminAPI {
 
         }
     }
+
+    @GetMapping("/{productId}")
+    public ResponseEntity<Map<String ,Object>> getProductById(@PathVariable int productId){
+        try {
+            Product dbProduct=productService.getProductById(productId);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(
+                            Map.of(
+                                    "success",true,
+                                    "message","Product found successfully",
+                                    "data",dbProduct));
+        }
+        catch (ProductNotFoundException e){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(
+                            Map.of("success",false,
+                                    "message",e.getMessage()
+                            ));
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(
+                            Map.of(
+                                    "success",false,
+                                    "message",e.getMessage()));
+        }
+    }
 }
