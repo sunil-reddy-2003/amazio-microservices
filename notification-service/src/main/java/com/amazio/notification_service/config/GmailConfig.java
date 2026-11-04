@@ -1,5 +1,6 @@
 package com.amazio.notification_service.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,14 +12,19 @@ import java.util.Properties;
 @Configuration
 public class GmailConfig {
 
+    @Value("${gmail}")
+    private String gmailId;
+    @Value("${gmail-password}")
+    private String gmailPassword;
+
     @Bean
     public JavaMailSender generateJavaMailSender(){
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
         javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setPort(587);
-        javaMailSender.setUsername("thugs.mail.tm@gmail.com");
-        javaMailSender.setPassword("ihaf zsqo xkrk gmmy");
+        javaMailSender.setUsername(gmailId);
+        javaMailSender.setPassword(gmailPassword);
 
         Properties props = javaMailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
