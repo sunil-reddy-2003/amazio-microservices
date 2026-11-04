@@ -21,17 +21,13 @@ public class UserEventProducer {
 
     public void publishUserEvent(
             UUID userId,
+            String fName,
+            String lName,
             String email,
             String eventType,
             String message
     ) {
-        UserEvent event = new UserEvent(
-                userId,
-                email,
-                eventType,
-                message,
-                LocalDateTime.now()
-        );
+        UserEvent event = new UserEvent(userId, fName, lName, email, eventType, message, LocalDateTime.now());
 
         kafkaTemplate.send(
                 TOPIC,
@@ -39,11 +35,7 @@ public class UserEventProducer {
                 event
         ).whenComplete((result, exception) -> {
             if (exception != null) {
-                log.error(
-                        "Failed to publish user event: {}",
-                        eventType,
-                        exception
-                );
+                log.error("Failed to publish user event: {}", eventType,exception);
             } else {
                 log.info(
                         "Published user event: {}, partition: {}, offset: {}",

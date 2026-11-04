@@ -5,6 +5,7 @@ import com.amazio.user_service.exception.AccessDeniedException;
 import com.amazio.user_service.exception.UserAlreadyExistsException;
 import com.amazio.user_service.exception.UserNotFoundException;
 import com.amazio.user_service.service.AuthenticationService;
+import com.amazio.user_service.service.PasswordResetService;
 import com.amazio.user_service.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class AuthApi {
 
     private final UserService userService;
     private final AuthenticationService authenticationService;
+    private final PasswordResetService passwordResetService;
 
 
 
@@ -47,7 +49,15 @@ public class AuthApi {
                             Map.of(
                                     "success",false,
                                     "message",e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(
+                            Map.of(
+                                    "success",false,
+                                    "message",e.getMessage()));
         }
+
     }
 
 
@@ -60,7 +70,7 @@ public class AuthApi {
                     .body(
                             Map.of(
                                     "success", true,
-                                    "message", "Customer logged in successfully",
+                                    "message", "Logged in successfully",
                                     "data", response));
         }
         catch (UserNotFoundException | BadCredentialsException e){
@@ -71,8 +81,7 @@ public class AuthApi {
                                     "success", false,
                                     "message", e.getMessage())
                     );
-        }
-        catch (AccessDeniedException e){
+        } catch (AccessDeniedException e){
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
                     .body(
@@ -80,9 +89,47 @@ public class AuthApi {
                                     "success", false,
                                     "message", e.getMessage())
                     );
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(
+                            Map.of(
+                                    "success",false,
+                                    "message",e.getMessage()));
         }
     }
 
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Map<String, Object>> forgotPassword(
+            @RequestBody ForgotPasswordRequestDto request
+    ) {
+
+        passwordResetService.forgotPassword(request);
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "success", true,
+                        "message",
+                        "If an account exists with this email, "
+                                + "a password reset link will be sent."
+                )
+        );
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<Map<String, Object>> resetPassword(
+            @RequestBody ResetPasswordRequestDto request
+    ) {
+
+        passwordResetService.resetPassword(request);
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "success", true,
+                        "message", "Password changed successfully"
+                )
+        );
+    }
 
     @PostMapping("/adminlogin")
     public ResponseEntity<Map<String,Object>> adminLogin(@RequestBody LoginRequestDto request) {
@@ -94,7 +141,7 @@ public class AuthApi {
                     .body(
                             Map.of(
                                     "success", true,
-                                    "message", "Customer logged in successfully",
+                                    "message", "Logged in successfully",
                                     "data", response));
         }
         catch (UserNotFoundException | BadCredentialsException e){
@@ -114,6 +161,13 @@ public class AuthApi {
                                     "success", false,
                                     "message", e.getMessage())
                     );
+        }catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(
+                            Map.of(
+                                    "success",false,
+                                    "message",e.getMessage()));
         }
     }
 }

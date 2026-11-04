@@ -1,6 +1,7 @@
 package com.amazio.user_service.service;
 
 import com.amazio.user_service.entity.User;
+import com.amazio.user_service.enums.UserEventType;
 import com.amazio.user_service.enums.UserRole;
 import com.amazio.user_service.exception.AccessDeniedException;
 import com.amazio.user_service.exception.UserNotFoundException;
@@ -45,10 +46,8 @@ public class AuthenticationService {
         User user = userRepo.findByEmail(request.email())
                 .orElse(null);
 
-        // Return a generic failure for an unknown email.
+//         Return a generic failure for an unknown email.
         if (user == null) {
-            publishFailedLogin(request.email());
-
             throw new UserNotFoundException(
                     "User doesn't exist!"
             );
@@ -59,8 +58,14 @@ public class AuthenticationService {
                 request.password(),
                 user.getPassword()
         )) {
-            publishFailedLogin(user.getEmail());
-
+            userEventProducer.publishUserEvent(
+                    user.getUserId(),
+                    user.getFName(),
+                    user.getLName(),
+                    user.getEmail(),
+                    UserEventType.USER_LOGIN_FAILED.toString(),
+                    "Login attempt failed"
+            );
             throw new BadCredentialsException(
                     "Invalid password!"
             );
@@ -68,8 +73,6 @@ public class AuthenticationService {
 
         // Enforce the requested login role.
         if (user.getUserRole() != expectedRole) {
-            publishFailedLogin(user.getEmail());
-
             throw new AccessDeniedException(
                     "This login is only for customers!"
             );
@@ -79,8 +82,10 @@ public class AuthenticationService {
 
         userEventProducer.publishUserEvent(
                 user.getUserId(),
+                user.getFName(),
+                user.getLName(),
                 user.getEmail(),
-                "USER_LOGIN",
+                UserEventType.USER_LOGIN.toString(),
                 "User logged in successfully"
         );
 
@@ -97,12 +102,4 @@ public class AuthenticationService {
         );
     }
 
-    private void publishFailedLogin(String email) {
-        userEventProducer.publishUserEvent(
-                null,
-                email,
-                "USER_LOGIN_FAILED",
-                "Login attempt failed"
-        );
-    }
 }

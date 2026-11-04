@@ -36,3 +36,14 @@ build/
 .env
 .env.*
 !.env.example
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Application secrets
+application-secret.yml
+application-secret.properties

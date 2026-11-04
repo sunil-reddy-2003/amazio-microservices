@@ -6,6 +6,7 @@ import com.amazio.user_service.dto.UserAddressDto;
 import com.amazio.user_service.dto.UserRequestDto;
 import com.amazio.user_service.entity.User;
 import com.amazio.user_service.entity.UserAddress;
+import com.amazio.user_service.enums.UserEventType;
 import com.amazio.user_service.enums.UserRole;
 import com.amazio.user_service.exception.AddressNotFoundException;
 import com.amazio.user_service.exception.UserAlreadyExistsException;
@@ -64,8 +65,10 @@ public class UserService {
 
         userEventProducer.publishUserEvent(
                 savedUser.getUserId(),
+                savedUser.getFName(),
+                savedUser.getLName(),
                 savedUser.getEmail(),
-                "USER_SIGNUP",
+                UserEventType.USER_SIGNUP.toString(),
                 "User registered successfully"
         );
 
@@ -131,8 +134,10 @@ public class UserService {
 
         userEventProducer.publishUserEvent(
                 updatedUser.getUserId(),
+                updatedUser.getFName(),
+                updatedUser.getLName(),
                 updatedUser.getEmail(),
-                "USER_UPDATED",
+                UserEventType.USER_UPDATED.toString(),
                 "User profile updated successfully"
         );
 
@@ -240,6 +245,26 @@ public class UserService {
                         )
                 );
 
+        // Prevent removing the only default address
+        if (address.isDefaultAddress() && !addressRequest.isDefaultAddress()) {
+
+            boolean anotherDefaultExists = userAddressRepo
+                    .findByUserId(userId)
+                    .stream()
+                    .anyMatch(existing ->
+                            existing.isDefaultAddress()
+                                    && existing.getAddressId() != addressId
+                    );
+
+            if (!anotherDefaultExists) {
+                throw new IllegalArgumentException(
+                        "At least one default address is required"
+                );
+            }
+        }
+
+        // If this address is being set as default,
+        // make all other addresses non-default
         if (addressRequest.isDefaultAddress()) {
 
             List<UserAddress> existingAddresses =
@@ -252,6 +277,7 @@ public class UserService {
             userAddressRepo.saveAll(existingAddresses);
         }
 
+        // Update address details
         address.setPincode(addressRequest.getPincode());
         address.setArea(addressRequest.getArea());
         address.setFlat(addressRequest.getFlat());
@@ -277,6 +303,31 @@ public class UserService {
                                 "Address not found for this user"
                         )
                 );
+
+        List<UserAddress> existingAddresses =
+                userAddressRepo.findByUserId(userId);
+
+        // If deleting the default address
+        if (address.isDefaultAddress()) {
+
+            // Prevent deleting the only existing address
+            if (existingAddresses.size() == 1) {
+                throw new IllegalArgumentException(
+                        "Cannot delete the only default address"
+                );
+            }
+
+            // Make another address the default
+            existingAddresses.stream()
+                    .filter(existing ->
+                            existing.getAddressId() != addressId
+                    )
+                    .findFirst()
+                    .ifPresent(nextDefault -> {
+                        nextDefault.setDefaultAddress(true);
+                        userAddressRepo.save(nextDefault);
+                    });
+        }
 
         userAddressRepo.delete(address);
     }

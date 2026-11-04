@@ -28,7 +28,7 @@ public class UserApi {
     private final UserService userService;
 
 
-    @GetMapping("/{userId}")
+    @GetMapping("userid/{userId}")
     public ResponseEntity<UserResponseDto> getUserById(@PathVariable UUID userId) {
         return ResponseEntity.ok(
                 UserResponseMapper.toDto(userService.getUserById(userId))
