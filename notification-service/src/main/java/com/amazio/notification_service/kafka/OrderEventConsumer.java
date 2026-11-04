@@ -1,8 +1,7 @@
 package com.amazio.notification_service.kafka;
 
-import com.amazio.notification_service.dto.InventoryResultEvent;
 import com.amazio.notification_service.dto.OrderCreatedEvent;
-import com.amazio.notification_service.service.NotificationService;
+import com.amazio.notification_service.service.OrderNotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class OrderEventConsumer {
 
-    private final NotificationService notificationService;
+    private final OrderNotificationService orderNotificationService;
 
 
     @KafkaListener(
@@ -24,17 +23,7 @@ public class OrderEventConsumer {
             }
     )
     public void consumeOrderCreated(OrderCreatedEvent event) {
-        notificationService.handleOrderCreated(event);
+        orderNotificationService.handleOrderCreated(event);
     }
 
-    @KafkaListener(
-            topics = "inventory-events",
-            groupId = "notification-inventory-group",
-            properties = {
-                    "spring.json.value.default.type=com.amazio.notification_service.dto.InventoryResultEvent"
-            }
-    )
-    public void consumeInventoryResultEvent(InventoryResultEvent event){
-        notificationService.handleInventoryResult(event);
-    }
 }

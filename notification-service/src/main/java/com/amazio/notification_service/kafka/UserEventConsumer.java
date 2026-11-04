@@ -1,10 +1,9 @@
 
 package com.amazio.notification_service.kafka;
 
-import com.amazio.notification_service.dto.InventoryResultEvent;
-import com.amazio.notification_service.dto.OrderCreatedEvent;
 import com.amazio.notification_service.dto.UserEvent;
-import com.amazio.notification_service.service.NotificationService;
+import com.amazio.notification_service.service.UserNotificationService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class UserEventConsumer {
 
-    private final NotificationService notificationService;
+    private final UserNotificationService userNotificationService;
 
 
     @KafkaListener(
@@ -25,8 +24,31 @@ public class UserEventConsumer {
                     "spring.json.value.default.type=com.amazio.notification_service.dto.UserEvent"
             }
     )
-    public void consumeOrderCreated(UserEvent event) {
-        notificationService.handleUser(event);
+    public void consumeUserEvent(UserEvent event) throws MessagingException {
+
+        log.info("Received user event: {}", event.eventType());
+
+        switch (event.eventType()) {
+//            USER_SIGNUP,
+//                    USER_UPDATED,
+//                    USER_LOGIN,
+//                    USER_LOGIN_FAILED,
+//                    USER_PASSWORD_RESET
+
+            case "USER_SIGNUP" ->
+                    userNotificationService.handleUserRegistration(event);
+            case "USER_UPDATED" ->
+                    userNotificationService.handleUserUpdate(event);
+            case "USER_LOGIN" ->
+                    userNotificationService.handleUserLogin(event);
+            case "USER_LOGIN_FAILED" ->
+                    userNotificationService.handleUserLoginFailed(event);
+            case "USER_PASSWORD_RESET" ->
+                    userNotificationService.handlePasswordReset(event);
+
+            default ->
+                    log.warn("Unknown user event type: {}", event.eventType());
+        }
     }
 
 }

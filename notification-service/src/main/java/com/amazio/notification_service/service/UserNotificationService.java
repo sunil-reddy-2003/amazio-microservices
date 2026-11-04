@@ -1,8 +1,7 @@
 package com.amazio.notification_service.service;
 
-import com.amazio.notification_service.dto.InventoryResultEvent;
-import com.amazio.notification_service.dto.OrderCreatedEvent;
 import com.amazio.notification_service.dto.UserEvent;
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +11,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 @Service
 @Slf4j
@@ -23,49 +21,128 @@ public class UserNotificationService {
     private final JavaMailSender javaMailSender;
     private final TemplateEngine templateEngine;
 
-    public void handleUser(UserEvent event) {
-        log.info("inside handle user :"+event.toString());
-//        UUID userId,
-//        String email,
-//        String eventType,
-//        String message,
-//        LocalDateTime timestamp
-        // Create an empty email message object (supports HTML emails)
+    public void handleUserLogin(UserEvent event) throws MessagingException {
+
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
-        // Helper class to easily set subject, receiver, and HTML body
-        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-
-        // Create a context object to store values that will be inserted into the HTML template
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
         Context context = new Context();
 
-        // Add all airline details to the context → these will replace variables in the HTML file
-        context.setVariable("userId", event.userId());
-        context.setVariable("email", event.email());
-        context.setVariable("eventType", event.eventType());
-        context.setVariable("message", event.message());
-        context.setVariable("timestamp", event.timestamp());
+        context.setVariable("fName", event.fName());
+        context.setVariable("lName",event.lName());
+        context.setVariable("email",event.email());
+        context.setVariable("timestamp",event.timestamp());
+        context.setVariable("changePasswordUrl","http://localhost:5173/forgot-password");
 
-        // Convert the HTML template (airline-registration-request.html) into final email HTML
-        String htmlContent = templateEngine.process("airline-registration-request", context);
+        String htmlContent = templateEngine.process("login-success", context);
 
         try {
-            // Set the receiver of the mail (system admin email)
-            mimeMessageHelper.setTo(airlineRegistrationReqDto.getAppAdmin().getEmail());
-
-            // Set the subject of the email
-            mimeMessageHelper.setSubject(airlineRegistrationReqDto.getAirline().getAirlineName() + " Registration Request");
-
-            // Set the email body and mark it as HTML content
+            mimeMessageHelper.setTo(event.email());
+            mimeMessageHelper.setSubject("New Login Detected - Amazio");
             mimeMessageHelper.setText(htmlContent, true);
 
         } catch (Exception e) {
-            // Log if anything goes wrong while preparing the email
-            log.error(e.getMessage());
+            throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
-
-// Finally send the email using the configured SMTP server
         javaMailSender.send(mimeMessage);
 
+    }
+
+    public void handlePasswordReset(UserEvent event) throws MessagingException {
+        log.info("inside handle user :"+event.toString());
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
+        Context context = new Context();
+
+        context.setVariable("fName", event.fName());
+        context.setVariable("lName",event.lName());
+        context.setVariable("email",event.email());
+        context.setVariable("resetPasswordUrl","http://localhost:5173/reset-password?token="+event.message());
+
+        String htmlContent = templateEngine.process("password-reset", context);
+
+        try {
+            mimeMessageHelper.setTo(event.email());
+            mimeMessageHelper.setSubject("Reset Your Password - Amazio");
+            mimeMessageHelper.setText(htmlContent, true);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
+        }
+        javaMailSender.send(mimeMessage);
+    }
+
+    public void handleUserRegistration(UserEvent event) throws MessagingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
+        Context context = new Context();
+
+        context.setVariable("fName", event.fName());
+        context.setVariable("lName",event.lName());
+        context.setVariable("email",event.email());
+        context.setVariable("userId",event.userId());
+
+        String htmlContent = templateEngine.process("signup", context);
+
+        try {
+            mimeMessageHelper.setTo(event.email());
+            mimeMessageHelper.setSubject("Welcome to Amazio! Your Account Is Ready \uD83C\uDF89");
+            mimeMessageHelper.setText(htmlContent, true);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
+        }
+        javaMailSender.send(mimeMessage);
+    }
+
+    public void handleUserUpdate(UserEvent event) throws MessagingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
+        Context context = new Context();
+
+        context.setVariable("fName", event.fName());
+        context.setVariable("lName",event.lName());
+        context.setVariable("email",event.email());
+        context.setVariable("userId",event.userId());
+
+        String htmlContent = templateEngine.process("user-update", context);
+
+        try {
+            mimeMessageHelper.setTo(event.email());
+            mimeMessageHelper.setSubject("Your Amazio Account Details Have Been Updated");
+            mimeMessageHelper.setText(htmlContent, true);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
+        }
+        javaMailSender.send(mimeMessage);
+    }
+
+    public void handleUserLoginFailed(UserEvent event) throws MessagingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
+        Context context = new Context();
+
+        context.setVariable("fName", event.fName());
+        context.setVariable("lName",event.lName());
+        context.setVariable("email",event.email());
+        context.setVariable("userId",event.userId());
+
+        String htmlContent = templateEngine.process("login-failed", context);
+
+        try {
+            mimeMessageHelper.setTo(event.email());
+            mimeMessageHelper.setSubject("Security Alert: Failed Login Attempt on Your Amazio Account");
+            mimeMessageHelper.setText(htmlContent, true);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
+        }
+        javaMailSender.send(mimeMessage);
     }
 }
