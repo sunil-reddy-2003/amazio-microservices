@@ -32,9 +32,11 @@ public class OrderItem {
     @Column(nullable = false)
     private int quantity;
 
+    @Column(nullable = false)
+    private String imageUrl;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "orderId",nullable = false)
     private Order order;
-
 }

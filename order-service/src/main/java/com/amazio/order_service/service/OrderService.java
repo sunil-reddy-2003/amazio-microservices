@@ -10,6 +10,7 @@ import com.amazio.order_service.exception.OrderNotFoundException;
 import com.amazio.order_service.exception.ProductNotFoundException;
 import com.amazio.order_service.exception.UnIntendedUserException;
 import com.amazio.order_service.kafka.OrderEventProducer;
+import com.amazio.order_service.kafka.OrderNotificationEventProducer;
 import com.amazio.order_service.repository.OrderRepo;
 
 import com.amazio.order_service.security.jwt.JwtService;
@@ -18,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.client.RestClient;
 
 import java.time.LocalDate;
@@ -35,6 +38,8 @@ public class OrderService {
     private final OrderEventProducer orderEventProducer;
     private final RestClient productRestClient;
     private final JwtService jwtService;
+    private final RestClient userRestClient;
+    private final OrderNotificationEventProducer orderNotificationEventProducer;
 
     @Transactional
     public Order createOrder(
@@ -95,6 +100,7 @@ public class OrderService {
             orderItem.setProductId(itemDto.productId());
             orderItem.setProductName(product.name());
             orderItem.setPrice(product.price());
+            orderItem.setImageUrl(product.imageUrl());
             orderItem.setQuantity(itemDto.quantity());
             orderItem.setOrder(order);
 
@@ -135,7 +141,7 @@ public class OrderService {
 
         Order savedOrder = orderRepo.save(order);
 
-        OrderCreatedEvent event = new OrderCreatedEvent(
+        OrderCreatedEvent orderCreatedEvent = new OrderCreatedEvent(
                 savedOrder.getOrderId(),
                 savedOrder.getOrderItems()
                         .stream()
@@ -148,7 +154,54 @@ public class OrderService {
                         .toList()
         );
 
-        orderEventProducer.publishOrderCreated(event);
+//        orderEventProducer.publishOrderCreated(orderCreatedEvent);
+        TransactionSynchronizationManager.registerSynchronization(
+                new TransactionSynchronization() {
+                    @Override
+                    public void afterCommit() {
+                        orderEventProducer.publishOrderCreated(orderCreatedEvent);
+                    }
+                }
+        );
+
+        UserResponseDto user = userRestClient.get()
+                .uri("/api/v1/users/userid/{userId}", userId)
+                .header("Authorization",authHeader)
+                .retrieve()
+                .body(UserResponseDto.class);
+
+        OrderNotificationEvent orderNotificationEvent=new OrderNotificationEvent(
+                savedOrder.getOrderId(),
+                userId,
+                user.email(),
+                user.fName()+" "+user.lName(),
+                savedOrder.getOrderItems()
+                        .stream()
+                        .map(item ->
+                                new OrderNotificationEvent.OrderItemDetails(
+                                        item.getProductId(),
+                                        item.getProductName(),
+                                        item.getImageUrl(),
+                                        item.getQuantity(),
+                                        item.getPrice()
+                                )
+                        )
+                        .toList(),
+                savedOrder.getTotalPrice(),
+                "ORDER_NOTIFICATION",
+                LocalDateTime.now()
+        );
+
+//        orderNotificationEventProducer.publishOrderCreated(orderNotificationEvent);
+        TransactionSynchronizationManager.registerSynchronization(
+                new TransactionSynchronization() {
+                    @Override
+                    public void afterCommit() {
+                        orderNotificationEventProducer
+                                .publishNotification(orderNotificationEvent);
+                    }
+                }
+        );
         return savedOrder;
     }
 
