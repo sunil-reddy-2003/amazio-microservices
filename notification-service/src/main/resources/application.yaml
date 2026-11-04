@@ -40,3 +40,6 @@ jwt:
 change-password-url: ${CHANGE_PASSWORD_URL}
 password-reset-url: ${PASSWORD_RESET_URL}
 home-url: ${HOME_URL}
+
+gmail: ${GMAIL}
+gmail-password: ${GMAIL_PASSWORD}
