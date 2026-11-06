@@ -32,8 +32,6 @@ public class ProductSeeder {
     CommandLineRunner seedProducts(ProductRepo productRepository) {
         return args -> {
 
-            log.info("Product count = " + productRepository.count());
-
             if (productRepository.count() == 0) {
 
                 ObjectMapper mapper = new ObjectMapper();
@@ -52,8 +50,6 @@ public class ProductSeeder {
                 for(Product savedProduct: savedProducts){
                     productEventProducer.publishProductCreated(savedProduct.getId());
                 }
-
-                log.info("🔥 All products seeded successfully with zero quantity.");
             }
         };
     }
