@@ -20,7 +20,6 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/products")
-@CrossOrigin(origins = "http://localhost:5173")
 public class ProductsAPI {
 
     ProductService productService;

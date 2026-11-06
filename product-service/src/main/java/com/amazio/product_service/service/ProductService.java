@@ -7,7 +7,6 @@ import com.amazio.product_service.entity.Product;
 import com.amazio.product_service.exception.ProductNotFoundException;
 import com.amazio.product_service.kafka.ProductEventProducer;
 import com.amazio.product_service.repository.ProductRepo;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -15,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,6 +35,7 @@ public class ProductService {
         this.productEventProducer = productEventProducer;
     }
 
+    @Transactional
     public Product addProduct(ProductRequestDto product) {
 
         Product saveProduct = new Product();
@@ -55,13 +56,18 @@ public class ProductService {
         return savedProduct;
     }
 
+    @Transactional(readOnly = true)
     public Product getProductById(int productId) {
-        if(!productRepo.existsById(productId)){
-            throw new ProductNotFoundException("No product found with id: "+productId);
-        }
-        return productRepo.getReferenceById(productId);
+
+        return productRepo.findById(productId)
+                .orElseThrow(() ->
+                        new ProductNotFoundException(
+                                "No product found with id: " + productId
+                        )
+                );
     }
 
+    @Transactional
     public Page<Product> getAllProducts(
             int page,
             int size,
@@ -86,6 +92,7 @@ public class ProductService {
                 searchTerm, category, pageable);
     }
 
+    @Transactional
     public Page<Product> viewAllProducts(
             int page,
             int size,

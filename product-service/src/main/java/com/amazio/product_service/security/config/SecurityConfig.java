@@ -38,7 +38,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
+                        .requestMatchers("/actuator/health").permitAll()
                         // Public product listing
                         .requestMatchers("/api/v1/products/")
                         .permitAll()
@@ -53,6 +53,7 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()
                 )
+                .httpBasic(httpBasic -> httpBasic.disable())
                 .addFilterBefore(
                         authFilter,
                         UsernamePasswordAuthenticationFilter.class
