@@ -31,10 +31,8 @@ public class ProductEventProducer {
                         );
                     } else {
                         log.info(
-                                "Published PRODUCT_CREATED: productId={}, partition={}, offset={}",
-                                productId,
-                                result.getRecordMetadata().partition(),
-                                result.getRecordMetadata().offset()
+                                "Published PRODUCT_CREATED: productId={}",
+                                productId
                         );
                     }
                 });
