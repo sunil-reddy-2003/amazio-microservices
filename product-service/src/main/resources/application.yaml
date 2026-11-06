@@ -49,6 +49,11 @@ jwt:
     secret:
       password: ${JWT_ACCESS_SECRET}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
 
 
 #    consumer:
