@@ -29,6 +29,7 @@ public class ProductsAdminAPI {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, Object>> addProduct(@RequestBody ProductRequestDto product) {
         try {
             Product dbProduct = productService.addProduct(product);
