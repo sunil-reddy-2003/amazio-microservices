@@ -31,11 +31,9 @@ public class InventoryEventProducer {
                 );
             } else {
                 log.info(
-                        "Published {} for order {}, partition={}, offset={}",
+                        "Published {} for order {}",
                         event.eventType(),
-                        event.orderId(),
-                        result.getRecordMetadata().partition(),
-                        result.getRecordMetadata().offset()
+                        event.orderId()
                 );
             }
         });

@@ -25,10 +25,7 @@ public class InventoryEventConsumer {
     )
     public void consumeProductCreated(ProductCreatedEvent event) {
 
-        log.info("Received product event: {}", event);
-
         if (!"PRODUCT_CREATED".equals(event.eventType())) {
-            log.info("Ignoring event type: {}", event.eventType());
             return;
         }
 

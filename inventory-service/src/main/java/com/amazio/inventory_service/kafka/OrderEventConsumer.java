@@ -22,10 +22,6 @@ public class OrderEventConsumer {
             }
     )
     public void consumeOrderCreated(OrderCreatedEvent event) {
-
-        log.info("Received ORDER_CREATED event for order: {}",
-                event.orderId());
-
         inventoryService.reserveStock(event);
     }
 }

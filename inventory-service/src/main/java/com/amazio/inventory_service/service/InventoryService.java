@@ -40,7 +40,6 @@ public class InventoryService {
         }
 
         if (inventoryRepo.findByProductId(event.productId()).isPresent()) {
-            log.info("Inventory already exists for productId={}", event.productId());
             return;
         }
 
@@ -50,8 +49,6 @@ public class InventoryService {
         inventory.setReservedQuantity(0);
 
         inventoryRepo.save(inventory);
-
-        log.info("Inventory created for productId={}", event.productId());
     }
 
     @Transactional
@@ -92,8 +89,6 @@ public class InventoryService {
 
         // Ignore duplicate events.
         if (inventoryReservationRepo.findByOrderId(event.orderId()).isPresent()) {
-            log.info("Order {} has already been processed. Skipping duplicate event.",
-                    event.orderId());
             return;
         }
 
@@ -164,7 +159,6 @@ public class InventoryService {
         // Step 4: Record successful reservation in the same transaction.
         inventoryReservationRepo.save(new InventoryReservation(event.orderId(),ReservationStatus.RESERVED,LocalDateTime.now()));
 
-        log.info("Stock reserved successfully for order: {}", event.orderId());
 
         publishAfterCommit(new InventoryResultEvent(
                 event.orderId(),
