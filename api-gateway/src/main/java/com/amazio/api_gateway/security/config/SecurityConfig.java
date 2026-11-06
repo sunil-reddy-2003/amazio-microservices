@@ -94,7 +94,7 @@ public class SecurityConfig {
                         })
                 )
 
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(httpBasic -> httpBasic.disable())
                 .addFilterBefore(
                         authFilter,
                         UsernamePasswordAuthenticationFilter.class
