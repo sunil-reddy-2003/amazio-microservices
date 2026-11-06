@@ -22,7 +22,6 @@ public class OrderNotificationService {
     private final TemplateEngine templateEngine;
 
     public void handleOrderNotification(OrderNotificationEvent event) throws MessagingException {
-        log.info("inside handle order notification : "+event.toString());
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper mimeMessageHelper =
@@ -50,11 +49,11 @@ public class OrderNotificationService {
             throw new RuntimeException("Failed to send order confirmation email: "
                     + e.getMessage(), e);
         }
-
         javaMailSender.send(mimeMessage);
+        log.info("Order notification triggered successfully 📨📤✅");
     }
 
     public void handleOrderCreated(OrderCreatedEvent event) {
-        log.info("inside handle order created : "+event.toString());
+        log.info("inside handle order created");
     }
 }

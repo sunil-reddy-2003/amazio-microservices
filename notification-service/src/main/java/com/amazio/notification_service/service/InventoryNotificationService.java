@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class InventoryNotificationService {
     public void handleInventoryResult(InventoryResultEvent event) {
-        log.info("inside handle inventory result :"+event.toString());
+        log.info("inside handle inventory result");
     }
 }

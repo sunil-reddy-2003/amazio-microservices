@@ -55,6 +55,7 @@ public class UserNotificationService {
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
+        log.info("Login success triggered successfully 📨📤✅");
 
     }
 
@@ -82,6 +83,8 @@ public class UserNotificationService {
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
+        log.info("Password reset triggered successfully 📨📤✅");
+
     }
 
     public void handleUserRegistration(UserEvent event) throws MessagingException {
@@ -108,6 +111,8 @@ public class UserNotificationService {
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
+        log.info("Signup triggered successfully 📨📤✅");
+
     }
 
     public void handleUserUpdate(UserEvent event) throws MessagingException {
@@ -134,6 +139,7 @@ public class UserNotificationService {
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
+        log.info("User update triggered successfully 📨📤✅");
     }
 
     public void handleUserLoginFailed(UserEvent event) throws MessagingException {
@@ -160,5 +166,7 @@ public class UserNotificationService {
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
+        log.info("Login failed triggered successfully 📨📤✅");
+
     }
 }

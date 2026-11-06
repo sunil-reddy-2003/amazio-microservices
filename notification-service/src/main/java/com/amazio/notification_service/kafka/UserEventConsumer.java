@@ -26,8 +26,6 @@ public class UserEventConsumer {
     )
     public void consumeUserEvent(UserEvent event) throws MessagingException {
 
-        log.info("Received user event: {}", event.eventType());
-
         switch (event.eventType()) {
 
             case "USER_SIGNUP" ->
