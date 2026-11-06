@@ -38,10 +38,8 @@ public class UserEventProducer {
                 log.error("Failed to publish user event: {}", eventType,exception);
             } else {
                 log.info(
-                        "Published user event: {}, partition: {}, offset: {}",
-                        eventType,
-                        result.getRecordMetadata().partition(),
-                        result.getRecordMetadata().offset()
+                        "Published user event: {}",
+                        eventType
                 );
             }
         });
