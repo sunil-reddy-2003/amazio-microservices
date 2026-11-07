@@ -17,14 +17,14 @@ public class RestClientConfig {
     @Bean
     public RestClient productRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8082")
+                .baseUrl(productServiceUrl)
                 .build();
     }
 
     @Bean
     public RestClient userRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8081")
+                .baseUrl(userServiceUrl)
                 .build();
     }
 }
