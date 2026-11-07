@@ -256,6 +256,7 @@ public class OrderService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public OrderInfoResponseDto getOrderByOrderId(UUID orderId, String authHeader) {
         String token=authHeader.substring(7);
         UUID userId= jwtService.extractUserId(token);

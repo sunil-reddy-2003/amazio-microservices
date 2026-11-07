@@ -34,13 +34,9 @@ public class AuthFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        log.info("AuthFilter triggered: {} {}",
-                request.getMethod(), request.getRequestURI());
 
         String authorizationHeader = request.getHeader("Authorization");
 
-        log.info("Authorization header present: {}",
-                authorizationHeader != null);
 
         if (authorizationHeader != null
                 && authorizationHeader.startsWith("Bearer ")) {
@@ -52,8 +48,6 @@ public class AuthFilter extends OncePerRequestFilter {
 
                 String email = claims.getSubject();
                 String role = claims.get("role", String.class);
-
-                log.info("JWT validated: email={}, role={}", email, role);
 
                 if (email != null
                         && !email.isBlank()
@@ -74,11 +68,9 @@ public class AuthFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext()
                             .setAuthentication(authentication);
 
-                    log.info("Authentication established for role: {}", role);
                 }
 
             } catch (Exception exception) {
-                log.error("JWT validation failed", exception);
 
                 SecurityContextHolder.clearContext();
 

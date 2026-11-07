@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,12 +37,13 @@ public class SecurityConfig {
                         )
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
+                        .requestMatchers(HttpMethod.OPTIONS, "/**")
                         .permitAll()
-
+                        .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers("/api/v1/orders/**").hasRole("CUSTOMER")
                         .anyRequest().authenticated()
                 )
+                .httpBasic(httpBasic -> httpBasic.disable())
                 .addFilterBefore(
                         authFilter,
                         UsernamePasswordAuthenticationFilter.class
