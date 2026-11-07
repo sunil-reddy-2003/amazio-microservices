@@ -6,7 +6,7 @@ spring:
     name: product-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/amazio_products
+    url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -21,9 +21,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
 
   kafka:
     #    bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
@@ -55,6 +53,9 @@ management:
       exposure:
         include: health
 
+  endpoint:
+    health:
+      show-details: never
 
 #    consumer:
 #      group-id: "order-response-group"
