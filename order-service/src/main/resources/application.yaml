@@ -66,3 +66,7 @@ management:
   endpoint:
     health:
       show-details: never
+
+
+user-service-url: {USER_SERVICE_URL}
+product-service-url: {PRODUCT_SERVICE_URL}
