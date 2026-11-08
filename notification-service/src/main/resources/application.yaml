@@ -43,6 +43,19 @@ spring:
         spring.json.trusted.packages: com.amazio.notification_service.dto
         spring.json.use.type.headers: false
 
+  mail:
+    host: smtp-relay.brevo.com
+    port: 587
+    username: ${BREVO_SMTP_LOGIN}
+    password: ${BREVO_SMTP_KEY}
+    email: ${BREVO_EMAIL}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 jwt:
   access:
     expiration:
@@ -53,9 +66,6 @@ jwt:
 change-password-url: ${CHANGE_PASSWORD_URL}
 password-reset-url: ${PASSWORD_RESET_URL}
 home-url: ${HOME_URL}
-
-gmail: ${GMAIL}
-gmail-password: ${GMAIL_PASSWORD}
 
 management:
   endpoints:

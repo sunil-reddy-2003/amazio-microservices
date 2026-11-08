@@ -6,6 +6,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class OrderNotificationService {
 
     private final JavaMailSender javaMailSender;
     private final TemplateEngine templateEngine;
+
+    @Value("${spring.mail.email}")
+    private String brevoEmail;
 
     public void handleOrderNotification(OrderNotificationEvent event) throws MessagingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -41,6 +45,7 @@ public class OrderNotificationService {
         String htmlContent = templateEngine.process("order-confirmation", context);
 
         try {
+            mimeMessageHelper.setFrom(brevoEmail);
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Order Confirmed - Amazio | #" + event.orderId());
             mimeMessageHelper.setText(htmlContent, true);

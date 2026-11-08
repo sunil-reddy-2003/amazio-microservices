@@ -30,6 +30,8 @@ public class UserNotificationService {
 
     @Value("${home-url}")
     private String homeUrl;
+    @Value("${spring.mail.email}")
+    private String brevoEmail;
 
     public void handleUserLogin(UserEvent event) throws MessagingException {
 
@@ -47,6 +49,7 @@ public class UserNotificationService {
         String htmlContent = templateEngine.process("login-success", context);
 
         try {
+            mimeMessageHelper.setFrom(brevoEmail);
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("New Login Detected - Amazio");
             mimeMessageHelper.setText(htmlContent, true);
@@ -75,6 +78,7 @@ public class UserNotificationService {
         String htmlContent = templateEngine.process("password-reset", context);
 
         try {
+            mimeMessageHelper.setFrom(brevoEmail);
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Reset Your Password - Amazio");
             mimeMessageHelper.setText(htmlContent, true);
@@ -103,6 +107,7 @@ public class UserNotificationService {
         String htmlContent = templateEngine.process("signup", context);
 
         try {
+            mimeMessageHelper.setFrom(brevoEmail);
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Welcome to Amazio! Your Account Is Ready \uD83C\uDF89");
             mimeMessageHelper.setText(htmlContent, true);
@@ -131,6 +136,7 @@ public class UserNotificationService {
         String htmlContent = templateEngine.process("user-update", context);
 
         try {
+            mimeMessageHelper.setFrom(brevoEmail);
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Your Amazio Account Details Have Been Updated");
             mimeMessageHelper.setText(htmlContent, true);
@@ -158,6 +164,7 @@ public class UserNotificationService {
         String htmlContent = templateEngine.process("login-failed", context);
 
         try {
+            mimeMessageHelper.setFrom(brevoEmail);
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Security Alert: Failed Login Attempt on Your Amazio Account");
             mimeMessageHelper.setText(htmlContent, true);
