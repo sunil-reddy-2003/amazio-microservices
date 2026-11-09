@@ -34,7 +34,7 @@ public class UserNotificationService {
     private String brevoEmail;
 
     public void handleUserLogin(UserEvent event) throws MessagingException {
-
+        log.trace("inside handle user login");
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
@@ -53,18 +53,17 @@ public class UserNotificationService {
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("New Login Detected - Amazio");
             mimeMessageHelper.setText(htmlContent, true);
+            log.info("login success email triggered successfully 📨📤✅");
 
         } catch (Exception e) {
+            log.error("failed to send login success email 📨⛔❌",e);
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
-        log.info("Login success triggered successfully 📨📤✅");
-
     }
 
     public void handlePasswordReset(UserEvent event) throws MessagingException {
-        log.info("inside handle user :"+event.toString());
-
+        log.trace("inside handle password reset");
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
@@ -82,16 +81,17 @@ public class UserNotificationService {
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Reset Your Password - Amazio");
             mimeMessageHelper.setText(htmlContent, true);
+            log.info("password reset email triggered successfully 📨📤✅");
 
         } catch (Exception e) {
+            log.error("failed to send password reset email \uD83D\uDCE8⛔❌",e);
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
-        log.info("Password reset triggered successfully 📨📤✅");
-
     }
 
     public void handleUserRegistration(UserEvent event) throws MessagingException {
+        log.trace("inside handle user registration");
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
@@ -111,16 +111,16 @@ public class UserNotificationService {
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Welcome to Amazio! Your Account Is Ready \uD83C\uDF89");
             mimeMessageHelper.setText(htmlContent, true);
-
+            log.info("signup email triggered successfully \uD83D\uDCE8\uD83D\uDCE4✅");
         } catch (Exception e) {
+            log.error("failed to send signup email \uD83D\uDCE8⛔❌",e);
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
-        log.info("Signup triggered successfully 📨📤✅");
-
     }
 
     public void handleUserUpdate(UserEvent event) throws MessagingException {
+        log.trace("inside handle user update ");
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
@@ -140,15 +140,17 @@ public class UserNotificationService {
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Your Amazio Account Details Have Been Updated");
             mimeMessageHelper.setText(htmlContent, true);
+            log.info("user update email triggered successfully \uD83D\uDCE8\uD83D\uDCE4✅");
 
         } catch (Exception e) {
+            log.error("failed to send user update email \uD83D\uDCE8⛔❌",e);
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
-        log.info("User update triggered successfully 📨📤✅");
     }
 
     public void handleUserLoginFailed(UserEvent event) throws MessagingException {
+        log.trace("inside handle user login failed");
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true,"UTF-8");
@@ -168,12 +170,12 @@ public class UserNotificationService {
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Security Alert: Failed Login Attempt on Your Amazio Account");
             mimeMessageHelper.setText(htmlContent, true);
+            log.info("login failed email triggered successfully \uD83D\uDCE8\uD83D\uDCE4✅");
 
         } catch (Exception e) {
+            log.error("failed to send login-failed email \uD83D\uDCE8⛔❌",e);
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
-        log.info("Login failed triggered successfully 📨📤✅");
-
     }
 }

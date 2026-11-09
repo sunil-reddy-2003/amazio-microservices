@@ -26,6 +26,7 @@ public class OrderNotificationService {
     private String brevoEmail;
 
     public void handleOrderNotification(OrderNotificationEvent event) throws MessagingException {
+        log.trace("inside handle order notification");
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
         MimeMessageHelper mimeMessageHelper =
@@ -49,13 +50,14 @@ public class OrderNotificationService {
             mimeMessageHelper.setTo(event.email());
             mimeMessageHelper.setSubject("Order Confirmed - Amazio | #" + event.orderId());
             mimeMessageHelper.setText(htmlContent, true);
+            log.info("order notification email triggered successfully \uD83D\uDCE8\uD83D\uDCE4✅");
 
         } catch (Exception e) {
+            log.error("failed to send order information email \uD83D\uDCE8⛔❌",e);
             throw new RuntimeException("Failed to send order confirmation email: "
                     + e.getMessage(), e);
         }
         javaMailSender.send(mimeMessage);
-        log.info("Order notification triggered successfully 📨📤✅");
     }
 
     public void handleOrderCreated(OrderCreatedEvent event) {
