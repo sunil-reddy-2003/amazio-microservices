@@ -12,19 +12,23 @@ import java.util.Properties;
 @Configuration
 public class GmailConfig {
 
-    @Value("${gmail}")
-    private String gmailId;
-    @Value("${gmail-password}")
-    private String gmailPassword;
+    @Value("${spring.mail.host}")
+    private String smtpHost;
+
+    @Value("${spring.mail.username}")
+    private String smtpUsername;
+
+    @Value("${spring.mail.password}")
+    private String smtpPassword;
 
     @Bean
     public JavaMailSender generateJavaMailSender(){
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
-        javaMailSender.setHost("smtp.gmail.com");
+        javaMailSender.setHost(smtpHost);
         javaMailSender.setPort(587);
-        javaMailSender.setUsername(gmailId);
-        javaMailSender.setPassword(gmailPassword);
+        javaMailSender.setUsername(smtpUsername);
+        javaMailSender.setPassword(smtpPassword);
 
         Properties props = javaMailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
