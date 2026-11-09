@@ -43,18 +43,10 @@ spring:
         spring.json.trusted.packages: com.amazio.notification_service.dto
         spring.json.use.type.headers: false
 
-  mail:
-    host: smtp-relay.brevo.com
-    port: 587
-    username: ${BREVO_SMTP_LOGIN}
-    password: ${BREVO_SMTP_KEY}
-    email: ${BREVO_EMAIL}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+brevo:
+  api-key: ${BREVO_API_KEY}
+  sender-email: ${BREVO_EMAIL}
+  sender-name: Amazio
 
 jwt:
   access:

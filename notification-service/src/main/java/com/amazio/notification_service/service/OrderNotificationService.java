@@ -2,35 +2,23 @@ package com.amazio.notification_service.service;
 
 import com.amazio.notification_service.dto.OrderCreatedEvent;
 import com.amazio.notification_service.dto.OrderNotificationEvent;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class OrderNotificationService {
 
-    private final JavaMailSender javaMailSender;
     private final TemplateEngine templateEngine;
+    private final BrevoEmailService brevoEmailService;
 
-    @Value("${spring.mail.email}")
-    private String brevoEmail;
+    public void handleOrderNotification(OrderNotificationEvent event) {
 
-    public void handleOrderNotification(OrderNotificationEvent event) throws MessagingException {
-        log.trace("inside handle order notification");
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-
-        MimeMessageHelper mimeMessageHelper =
-                new MimeMessageHelper(mimeMessage,true,"UTF-8");
+        log.trace("Inside handle order notification");
 
         Context context = new Context();
 
@@ -43,24 +31,26 @@ public class OrderNotificationService {
         context.setVariable("eventType", event.eventType());
         context.setVariable("timestamp", event.timestamp());
 
-        String htmlContent = templateEngine.process("order-confirmation", context);
+        String htmlContent = templateEngine.process(
+                "order-confirmation",
+                context
+        );
 
         try {
-            mimeMessageHelper.setFrom(brevoEmail);
-            mimeMessageHelper.setTo(event.email());
-            mimeMessageHelper.setSubject("Order Confirmed - Amazio | #" + event.orderId());
-            mimeMessageHelper.setText(htmlContent, true);
-            log.info("order notification email triggered successfully \uD83D\uDCE8\uD83D\uDCE4✅");
-
+            brevoEmailService.sendEmail(
+                    event.email(),
+                    "Order Confirmed - Amazio | #" + event.orderId(),
+                    htmlContent
+            );
+            log.info("Order confirmation email sent successfully to {}", event.email());
         } catch (Exception e) {
-            log.error("failed to send order information email \uD83D\uDCE8⛔❌",e);
-            throw new RuntimeException("Failed to send order confirmation email: "
-                    + e.getMessage(), e);
+            log.error("Failed to send order confirmation email to {}", event.email(), e);
+            throw new RuntimeException("Failed to send order confirmation email: " + e.getMessage(), e);
         }
-        javaMailSender.send(mimeMessage);
     }
 
     public void handleOrderCreated(OrderCreatedEvent event) {
-        log.info("inside handle order created");
+
+        log.info("Inside handle order created");
     }
 }
